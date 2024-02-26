@@ -1,0 +1,126 @@
+<!--Ejercicio:-->
+
+<!--Cuenta Regresiva de 30 a 0-->
+<!--5 preguntas-->
+<!--5 input-->
+<!--boton Enviar-->
+<!--Reiniciar-->
+
+<!--Funciones:-->
+<!--mostrar tiempo inicial-->
+<!--llamar funciones 2 y 3-->
+<!--coddigo para tiempo cumplido-->
+<!--actualizar tiempo en pantalla-->
+<!--mostrar Alerta con fecga y la respuetsa-->
+<!--Reiniciar el sitio.-->
+
+
+<!--interface location para reiniciar. locarion.reload()-->
+<!--fecha: miFecha.toLocaleDateString("es-Es");-->
+<!--7-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuenta Regresiva</title>
+    <link rel="stylesheet" href="Estilos.css">
+</head>
+<body onload="iniciarCuentaRegresiva()">
+
+
+    <h2>Responde a las preguntas lo mas rapido que pueda <span id="cuentaRegresiva"></span></h2>
+
+
+        <p>1.¿Dónde se encuentra la Sagrada Familia? </p>
+        <input type="text" id="respuesta1">
+
+        <p>2.¿Cuál es el océano más grande del mundo?</p>
+        <input type="text" id="respuesta2" >
+
+        <p>3.¿Cuál es el país más grande del mundo? </p>
+        <input type="text" id="respuesta3">
+
+        <p>4.¿Cuál es país más poblado de la Tierra?</p>
+        <input type="text" id="respuesta4" >
+
+        <p>5.¿Cuál es la ciudad de los rascacielos? </p>
+        <input type="text" id="respuesta5">
+
+        <p>6.¿Qué país del mundo produce más vino?</p>
+        <input type="text" id="respuesta6">
+        <br><br><br>
+
+    <button onclick="finalizado()">
+                Termine!
+        </button>
+        <br><br><br>
+        <button onclick="volverAIntentar()">Volver a Intentar</button>
+
+
+
+    <script>
+
+        let tiempoTerminado;
+        let intervaloDeTiempo;
+
+
+
+        function iniciarCuentaRegresiva() {
+            tiempoTerminado = setTimeout(tiempoCumplido,40000);
+            intervaloDeTiempo = setInterval(ticTac, 1000);
+
+            document.getElementById("cuentaRegresiva").textContent = 40;
+
+        }
+
+        function ticTac(){
+            let tiempo =  document.getElementById("cuentaRegresiva").textContent;
+
+            document.getElementById("cuentaRegresiva").textContent = tiempo - 1;
+        }
+
+
+        function tiempoCumplido(){
+            clearInterval(intervaloDeTiempo);
+            document.getElementById("cuentaRegresiva").textContent = 0;
+            alert("Game Over: se acabo el tiempo intenta nuevamente");
+        }
+
+        function finalizado(){
+            clearTimeout(tiempoTerminado);
+            clearInterval(intervaloDeTiempo);
+
+            let fecha= new Date();
+            let respuesta1 = document.getElementById("respuesta1").value;
+            let respuesta2 = document.getElementById("respuesta2").value;
+            let respuesta3 = document.getElementById("respuesta3").value;
+            let respuesta4 = document.getElementById("respuesta4").value;
+            let respuesta5 = document.getElementById("respuesta5").value;
+            let respuesta6 = document.getElementById("respuesta6").value;
+
+            let mensaje = fecha.toLocaleTimeString("es-ES") + "\n" +
+                "1. " + respuesta1 + "\n" +
+                "2. " + respuesta2 + "\n" +
+                "3. " + respuesta3 + "\n" +
+                "4. " + respuesta4 + "\n" +
+                "5. " + respuesta5 + "\n" +
+                "6. " + respuesta6 ;
+
+            alert(mensaje);
+
+        }
+
+        function volverAIntentar(){
+
+            location.reload();
+
+        }
+    </script>
+
+    </body>
+    </html>
+
+
+
+

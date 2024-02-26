@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Title</title>
+  <!--    <style>-->
+  <!--        audio::-webkit-controls-panel{-->
+  <!--            background-color: coral;-->
+  <!--        }-->
+  <!--    </style>-->
+
+  <link rel="stylesheet" href="misEstilos.css">
+</head>
+    <body onload="comenzarReloj()">
+
+
+        <input type="number" id="tiempoElegido"/>
+        <button onclick="comenzarTiempo()" >Alarma</button>
+        <h1 id="textoAlarma">00:00:00</h1>
+        <h1 id="fechaActual" >00/00/0000</h1>
+
+<!--        <audio controls>-->
+<!--          <source src="Audios" type="audio.mpeg">-->
+<!--          Sonido no Habilitado-->
+<!--        </audio>-->
+
+        <script>
+          let elementoSegundos = document.getElementById("tiempoElegido");
+          let elementoTextoAlarma = document.getElementById("textoAlarma");
+          let elementoSonidoAlarma = document.getElementById("audioAlarma")
+          let elementoFechaActual =document.getElementById("fechaActual")
+
+
+          function comenzarTiempo() {
+            setTimeout(tiempoCumplido,1000* elementoSegundos.value);
+
+          }
+          function tiempoCumplido() {
+            elementoTextoAlarma.style.color="green"
+            elementoSonidoAlarma.play();
+          }
+
+          function comenzarReloj(){
+            setInterval(ticTac,1000);
+
+          }
+
+          function ticTac(){
+
+            let tiempoActual = new Date();
+            let hora = String(tiempoActual.getHours()).padStart(2, "0");
+            let minutes =  String(tiempoActual.getMinutes()).padStart(2, "0");
+            let segundos = String(tiempoActual.getSeconds()).padStart(2, "0");
+
+            let textoHoraSegundos = hora + ":" + minutes + ":" + segundos;
+            elementoTextoAlarma.textContent = textoHoraSegundos;
+          }
+
+            function fechaAc(){
+
+              let fechaActual = new Date();
+              let dia = String(fechaActual.getDate()).padStart(2,"0")
+              let mes=String(fechaActual.getMonth() + 1).padStart(2, "0");
+              let ano=String(fechaActual.getFullYear()).padStart(2,"0");
+
+              let fechaFormateada= dia + "/" + mes + "/" + ano;
+              elementoFechaActual.textContent = fechaFormateada;
+          }
+
+          fechaAc();
+        </script>
+
+</body>
+</html>
+
